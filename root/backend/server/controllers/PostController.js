@@ -15,41 +15,43 @@ import Post from '../models/PostModel.js';
 export const createPost = (req, res) => {
     const post = new Post(req.body);
     if (!post.caption) {
-        res.status(422).json({ message: { messageBody: "Add caption", messageError: true }});
+        res.status(422).json({ message: { messageBody: "Add caption", messageError: true } });
     }
-    req.user.password = undefined; // OR after post.postedBy, change post.postedBy
+    else if (!post.image) {
+        return res.status(422).json({ message: { messageBody: "Add photo", messageError: true } });
+    }
+    req.user.password = undefined; // OR after next line
     post.postedBy = req.user;
-
-    console.log(post);
+    //console.log(post);
 
     post.save()
-    .then(post => {
-        res.status(200).json({ message: { messageBody: "Succesfully posted", messageError: false }});
-    })
-    .catch(err => {
-        res.status(500).json({ message: { messageBody: "Error saving post to DB", messageError: true }});
-    })
+        .then(post => {
+            res.status(200).json({post: post, message: { messageBody: "Succesfully posted", messageError: false } });
+        })
+        .catch(err => {
+            res.status(500).json({ message: { messageBody: "Error saving post to DB", messageError: true } });
+        })
 }
 
 export const allPosts = (req, res) => {
     Post.find()
-    .populate("postedBy", "_id username") // Populate{postedBy, withProperties..}
-    .then( posts => {
-        res.json({posts})
-    })
-    .catch(err => {
-        res.status(500).json({ message: { messageBody: "Error getting all posts", messageError: true }});
-    })
+        .populate("postedBy", "_id username") // Populate{postedBy, withProperties..} to get actual properties instead of id
+        .then(posts => {
+            res.json({ posts })
+        })
+        .catch(err => {
+            res.status(500).json({ message: { messageBody: "Error getting all posts", messageError: true } });
+        })
 }
 
 export const userPosts = (req, res) => {
-    Post.find({postedBy: req.user._id})
-    .populate("postedBy", "_id username")
-    .then(userPost => {
-        res.json({userPost})
-    })
-    .catch(err => {
-        res.status(500).json({ message: { messageBody: "Error getting user posts", messageError: true }});
+    Post.find({ postedBy: req.user._id })
+        .populate("postedBy", "_id username")
+        .then(userPost => {
+            res.json({ userPost })
+        })
+        .catch(err => {
+            res.status(500).json({ message: { messageBody: "Error getting user posts", messageError: true } });
 
-    })
+        })
 }

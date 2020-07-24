@@ -1,10 +1,11 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom'; // ADD ROUTE FOR HOME PATH
+import { BrowserRouter as Router, Route } from 'react-router-dom'; // ADD ROUTE FOR HOME PATH
+import './App.css';
 //import PrivateRoute from "./hocs/PrivateRoute";
 import PublicRoute from './hocs/PublicRoute';
 import Register from './components/register/Register';
 import Login from './components/login/Login';
-
+import Home from './components/home-view/HomeView'
 
 const App = () => {
   // Get data from the context (this is the consumer)
@@ -16,10 +17,13 @@ const App = () => {
 
   //Route takes in a path, based on path is going to render different components
   return (
-    <Router>
-      <PublicRoute path="/auth/register" component={Register} />
-      <PublicRoute path="/auth/login" component={Login} />
-    </Router>
+    <div>
+      <Router>
+        <Route exact path="/" component={Home} />
+        <PublicRoute path="/auth/register" component={Register} />
+        <PublicRoute path="/auth/login" component={Login} />
+      </Router>
+    </div>
   );
 }
 

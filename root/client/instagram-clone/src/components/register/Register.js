@@ -47,114 +47,114 @@ const Register = (props) => {
     }
 
     return (
-        <div id="wrapper">
-            <div className="container">
-                <div className="phone-app-demo"></div>
-                <div className="form-data">
-                    <form onSubmit={onSubmitHandler} action="">
+            <div id="wrapper">
+                <div className="container">
+                    <div className="phone-app-demo"></div>
+                    <div className="form-data">
+                        <form onSubmit={onSubmitHandler} action="">
 
-                        <div className="logo">
-                            <img src="https://i.ibb.co/rtXKD8W/instagram-logo-468-E0-CC266-seeklogo-com.png" alt="" />
+                            <div className="logo">
+                                <img className="img-register" src="https://i.ibb.co/rtXKD8W/instagram-logo-468-E0-CC266-seeklogo-com.png" alt="" />
+                            </div>
+
+                            <div className="sign-up-description">Sign up to see photos and videos from your friends.</div>
+                            <button className="form-btn-fb-login" type="submit">Log in with Facebook</button>
+                            <span className="has-separator">Or</span>
+
+                            <label htmlFor="email" />
+                            <input type="text"
+                                name="email"
+                                value={user.email}
+                                onChange={onChangeHandler}
+                                placeHolder="Email" />
+
+                            <label htmlFor="fullName" />
+                            <input type="text"
+                                name="fullName"
+                                value={user.fullName}
+                                onChange={onChangeHandler}
+                                placeHolder="Full Name" />
+
+                            <label htmlFor="username" />
+                            <input type="text"
+                                name="username"
+                                value={user.username}
+                                onChange={onChangeHandler}
+                                placeHolder="Username" />
+
+                            <label htmlFor="password" />
+                            <input type="password"
+                                name="password"
+                                value={user.password}
+                                onChange={onChangeHandler}
+                                placeHolder="Password" />
+
+                            <button className="form-btn-signup" type="submit">Sign up</button>
+
+                            <div className="sign-up-agreement">By signing up, you agree to our Terms, Data Policy and Cookies Policy</div>
+                        </form>
+
+                        <div className="sign-up">
+                            Have an account? <a href="/auth/login">Log in</a>
                         </div>
 
-                        <div className="sign-up-description">Sign up to see photos and videos from your friends.</div>
-                        <button className="form-btn-fb-login" type="submit">Log in with Facebook</button>
-                        <span className="has-separator">Or</span>
-
-                        <label htmlFor="email" />
-                        <input type="text"
-                            name= "email"
-                            value= {user.email}
-                            onChange={onChangeHandler}
-                            placeHolder="Email" />
-
-                        <label htmlFor="fullName" />
-                        <input type="text"
-                            name="fullName"
-                            value={user.fullName}
-                            onChange={onChangeHandler}
-                            placeHolder="Full Name" />
-
-                        <label htmlFor="username" />
-                        <input type="text"
-                            name="username"
-                            value={user.username}
-                            onChange={onChangeHandler}
-                            placeHolder="Username" />
-
-                        <label htmlFor="password" />
-                        <input type="password"
-                            name="password"
-                            value={user.password}
-                            onChange={onChangeHandler}
-                            placeHolder="Password" />
-
-                        <button className="form-btn-signup" type="submit">Sign up</button>
-
-                        <div className="sign-up-agreement">By signing up, you agree to our Terms, Data Policy and Cookies Policy</div>
-                    </form>
-
-                    <div className="sign-up">
-                        Have an account? <a href="/auth/login">Log in</a>
-                    </div>
-
-                    <div className="get-the-app">
-                        <span>Get the app.</span>
-                        <div className="badges">
-                            <img src="https://www.instagram.com/static/images/appstore-install-badges/badge_ios_english-en.png/180ae7a0bcf7.png" />
-                            <img src="https://www.instagram.com/static/images/appstore-install-badges/badge_android_english-en.png/e9cd846dc748.png" />
+                        <div className="get-the-app">
+                            <span>Get the app.</span>
+                            <div className="badges">
+                                <img src="https://www.instagram.com/static/images/appstore-install-badges/badge_ios_english-en.png/180ae7a0bcf7.png" />
+                                <img src="https://www.instagram.com/static/images/appstore-install-badges/badge_android_english-en.png/e9cd846dc748.png" />
+                            </div>
                         </div>
-                    </div>
 
+                    </div>
+                </div>
+                <div>
+                    <footer>
+                        <div className="container">
+                            <nav className="footer-nav">
+                                <ul>
+                                    <li>
+                                        <a href="/">ABOUT</a>
+                                    </li>
+                                    <li>
+                                        <a href="/">HELP</a>
+                                    </li>
+                                    <li>
+                                        <a href="/">PRESS</a>
+                                    </li>
+                                    <li>
+                                        <a href="/">API</a>
+                                    </li>
+                                    <li>
+                                        <a href="/">JOBS</a>
+                                    </li>
+                                    <li>
+                                        <a href="/">PRIVACY</a>
+                                    </li>
+                                    <li>
+                                        <a href="/">TERMS</a>
+                                    </li>
+                                    <li>
+                                        <a href="/">LOCATIONS</a>
+                                    </li>
+                                    <li>
+                                        <a href="/">TOP ACCOUNTS</a>
+                                    </li>
+                                    <li>
+                                        <a href="/">HASHTAGS</a>
+                                    </li>
+                                    <li>
+                                        <a href="/">LANGUAGE</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                            <div className="copyright-notice">
+                                &copy; 2020 INSTAGRAM
+                        </div>
+                        </div>
+                    </footer>
                 </div>
             </div>
-            <div>
-                <footer>
-                    <div className="container">
-                        <nav className="footer-nav">
-                            <ul>
-                                <li>
-                                    <a href="/">ABOUT</a>
-                                </li>
-                                <li>
-                                    <a href="/">HELP</a>
-                                </li>
-                                <li>
-                                    <a href="/">PRESS</a>
-                                </li>
-                                <li>
-                                    <a href="/">API</a>
-                                </li>
-                                <li>
-                                    <a href="/">JOBS</a>
-                                </li>
-                                <li>
-                                    <a href="/">PRIVACY</a>
-                                </li>
-                                <li>
-                                    <a href="/">TERMS</a>
-                                </li>
-                                <li>
-                                    <a href="/">LOCATIONS</a>
-                                </li>
-                                <li>
-                                    <a href="/">TOP ACCOUNTS</a>
-                                </li>
-                                <li>
-                                    <a href="/">HASHTAGS</a>
-                                </li>
-                                <li>
-                                    <a href="/">LANGUAGE</a>
-                                </li>
-                            </ul>
-                        </nav>
-                        <div className="copyright-notice">
-                            &copy; 2020 INSTAGRAM
-                        </div>
-                    </div>
-                </footer>
-            </div>
-        </div>
     )
 }
 

@@ -36,7 +36,7 @@ const Login = (props) => {
                     <form onSubmit={onSubmitHanlder} action="">
 
                         <div className="logo">
-                            <img src="https://i.ibb.co/rtXKD8W/instagram-logo-468-E0-CC266-seeklogo-com.png" alt="" />
+                            <img className="img-login" src="https://i.ibb.co/rtXKD8W/instagram-logo-468-E0-CC266-seeklogo-com.png" alt="" />
                         </div>
 
                         <label htmlFor="username" classname="sr-only" />

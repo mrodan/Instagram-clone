@@ -1,0 +1,21 @@
+.navbar-log-reg-btn {
+    margin-left: 5px;
+    padding: 7.5px 10.5px;
+    border: none;
+    border-radius: 3px;
+    background-color: rgb(0, 149, 246);
+    color: white;
+    font-size: 12.5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.navbar-login-btn {
+    background-color: rgb(0, 149, 246);
+    color: white;
+}
+
+.navbar-register-btn {
+    background-color: white;
+    color: rgb(0, 149, 246);
+}
