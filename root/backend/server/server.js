@@ -2,10 +2,11 @@ import express from 'express';
 import mongoose from 'mongoose';
 import morgan from 'morgan'
 import cookieParser from 'cookie-parser';
-
 import config from './config/config.js'; // To import config.js, had to add "type": "module" into the package.json to import/read files as ES6
 import authRouter from './routes/AuthRouter.js';
 import postRouter from './routes/PostRouter.js';
+import apiRouter from './routes/ApiRouter.js';
+
 
 // DATABASE CONNECTION
 // try {
@@ -29,11 +30,13 @@ mongoose.connection.on('disconnected', () => {
 const app = express(); // Init express app
 app.use(morgan('dev')); // Request log
 app.use(cookieParser()); // Use cookieParser module
-app.use(express.json()) // Use body-parser module
+//app.use(express.json()) // Use body-parser module
+app.use(express.json({limit: '50mb'}));
+app.use(express.urlencoded({limit: '50mb', extended: true}));
 
 app.use("/auth", authRouter);
 app.use("/post", postRouter);
-
+app.use('/api', apiRouter);
 
 
 

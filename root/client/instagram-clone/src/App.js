@@ -5,7 +5,9 @@ import './App.css';
 import PublicRoute from './hocs/PublicRoute';
 import Register from './components/register/Register';
 import Login from './components/login/Login';
-import Home from './components/home-view/HomeView'
+import Home from './components/home-view/HomeView';
+import UploadTest from './components/Tests/UploadTest';
+
 
 const App = () => {
   // Get data from the context (this is the consumer)
@@ -22,6 +24,8 @@ const App = () => {
         <Route exact path="/" component={Home} />
         <PublicRoute path="/auth/register" component={Register} />
         <PublicRoute path="/auth/login" component={Login} />
+
+        <Route exact path="/uploadtest" component={UploadTest} />
       </Router>
     </div>
   );

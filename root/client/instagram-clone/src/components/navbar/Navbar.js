@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom'     // LINK for not to refresh website (Link to= <=> a)
 import { AuthContext } from '../../Context/AuthContext';
 import './NavbarStyle.css'
 import SearchBar from './Searchbar/Searchbar'
@@ -28,7 +29,6 @@ const Navbar = () => {
             </div>
         )
     }
-
 
     return (
         <div className="navbar">
