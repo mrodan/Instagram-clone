@@ -54,10 +54,10 @@ const Login = (props) => {
                         <button className="form-btn" type="submit">Log in</button>
 
                         <span className="has-separator">Or</span>
-                        <a className="facebook-login" href="#">
+                        <a className="facebook-login" href="/#">
                             <i className="fab fa-facebook"></i> Log in with Facebook
                         </a>
-                        <a className="password-reset" href="#">Forgot Password?</a>
+                        <a className="password-reset" href="/#">Forgot Password?</a>
                     </form>
 
                     <div className="sign-up">
@@ -67,8 +67,8 @@ const Login = (props) => {
                     <div className="get-the-app">
                         <span>Get the app.</span>
                         <div className="badges">
-                            <img src="https://www.instagram.com/static/images/appstore-install-badges/badge_ios_english-en.png/180ae7a0bcf7.png" />
-                            <img src="https://www.instagram.com/static/images/appstore-install-badges/badge_android_english-en.png/e9cd846dc748.png" />
+                            <img src="https://www.instagram.com/static/images/appstore-install-badges/badge_ios_english-en.png/180ae7a0bcf7.png" alt="" />
+                            <img src="https://www.instagram.com/static/images/appstore-install-badges/badge_android_english-en.png/e9cd846dc748.png" alt="" />
                         </div>
                     </div>
                 </div>
@@ -79,37 +79,37 @@ const Login = (props) => {
                         <nav className="footer-nav">
                             <ul>
                                 <li>
-                                    <a href="#">ABOUT</a>
+                                    <a href="/#">ABOUT</a>
                                 </li>
                                 <li>
-                                    <a href="#">HELP</a>
+                                    <a href="/#">HELP</a>
                                 </li>
                                 <li>
-                                    <a href="#">PRESS</a>
+                                    <a href="/#">PRESS</a>
                                 </li>
                                 <li>
-                                    <a href="#">API</a>
+                                    <a href="/#">API</a>
                                 </li>
                                 <li>
-                                    <a href="#">JOBS</a>
+                                    <a href="/#">JOBS</a>
                                 </li>
                                 <li>
-                                    <a href="#">PRIVACY</a>
+                                    <a href="/#">PRIVACY</a>
                                 </li>
                                 <li>
-                                    <a href="#">TERMS</a>
+                                    <a href="/#">TERMS</a>
                                 </li>
                                 <li>
-                                    <a href="#">LOCATIONS</a>
+                                    <a href="/#">LOCATIONS</a>
                                 </li>
                                 <li>
-                                    <a href="#">TOP ACCOUNTS</a>
+                                    <a href="/#">TOP ACCOUNTS</a>
                                 </li>
                                 <li>
-                                    <a href="#">HASHTAGS</a>
+                                    <a href="/#">HASHTAGS</a>
                                 </li>
                                 <li>
-                                    <a href="#">LANGUAGE</a>
+                                    <a href="/#">LANGUAGE</a>
                                 </li>
                             </ul>
                         </nav>

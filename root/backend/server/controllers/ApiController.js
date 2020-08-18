@@ -18,7 +18,7 @@ export const uploadImage = async (req, res) => {
     }
 }
 
-export const requestImage = async (req, res) => {
+export const requestImagesExplore = async (req, res) => {
     try {
         const { resources } = await cloudinary.v2.search
                                                     .expression('folder:insta_clone')

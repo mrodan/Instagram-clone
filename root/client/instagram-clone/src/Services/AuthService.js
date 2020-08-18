@@ -14,7 +14,7 @@ export default {
                 if (res.status !== 401 && res.status === 200) // Passport responds 401 status if not authenticated and 200 if authenticated
                     return res.json().then(data => data); // Authenticated
                 else
-                    return console.log(res.status), { isAuthenticated: false, user: { username: "", privilege: "" } };
+                    return { isAuthenticated: false, user: { username: "", privilege: "" } };
             })
     },
 
@@ -39,7 +39,7 @@ export default {
     // Persistence with server (when browser closed, still authenticated). Used with context API
     // We use the context api when we call the func
     isAuthenticated: () => {
-        return fetch('/user/authenticated')
+        return fetch('/auth/authenticated')
             .then(res => {
                 if (res.status !== 401) // Passport responds 401 status if not authenticated
                     return res.json().then(data => data); // Authenticated

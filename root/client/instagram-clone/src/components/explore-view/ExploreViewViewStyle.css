@@ -1,0 +1,22 @@
+.navbar-container {
+    padding: 8.5px 0 6.5px;
+    margin-top: 0px;
+    background: #FFFFFF;
+    border-bottom: 1px solid rgb(219, 219, 219);
+}
+
+
+.content-container {
+background: rgb(250, 250, 250);
+width: 963px; /* 14 + 935 + 14 */
+margin: auto;
+margin-top: 13px;
+padding-left: 0px;
+display: block;
+
+}
+
+
+.image {
+    margin: 14px;
+}

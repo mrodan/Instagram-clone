@@ -6,13 +6,35 @@ import SearchBar from './Searchbar/Searchbar'
 import NavbarLogin from './LoginRegister/NavbarLogin'
 import NavbarRegister from './LoginRegister/NavbarRegister'
 
-const Navbar = () => {
+const Navbar = (props) => {
     const { isAuthenticated, setIsAuthenticated, user, setUser } = useContext(AuthContext);
 
     const authenticatedActions = () => {
         return (
             <div>
-                AuthActions
+                <div className="">
+                    <Link className="" to="/">
+                        <img className="action-icon" src="https://i.ibb.co/djrWs6V/Home-White-V2.png" alt="" />
+                    </Link>
+
+                    <Link className="" to="/">
+                        <img className="action-icon" src="https://i.ibb.co/MN73q9n/Paper-Airplane-V4.jpg" alt="" />
+                    </Link>
+                    <Link className="" to="/explore">
+                        {window.location.pathname !== "/explore" ?
+                            <img className="action-icon" src="https://i.ibb.co/z5HHK7w/Compass-White-V2.png" alt="" /> :
+                            <img className="action-icon" src="https://i.ibb.co/k24xftQ/Compass-Black-Icon.png" alt="" />
+                        }
+                    </Link>
+
+                    <Link className="" to="/">
+                        <img className="action-icon" src="https://i.ibb.co/rv2c7SD/Heart-White-V2.png" alt="" />
+                    </Link>
+
+                    <Link className="" to="/">
+                        <img className="action-icon" src="https://i.ibb.co/FKvjjPq/Temp-Pic-Icon.png" alt="" />
+                    </Link>
+                </div>
             </div>
         )
     }
@@ -20,12 +42,12 @@ const Navbar = () => {
     const unAuthenticatedActions = () => {
         return (
             <div>
-                <a href="/auth/login">
+                <Link to="/auth/login">
                     <NavbarLogin />
-                </a>
-                <a href="/auth/register">
+                </Link>
+                <Link to="/auth/register">
                     <NavbarRegister />
-                </a>
+                </Link>
             </div>
         )
     }

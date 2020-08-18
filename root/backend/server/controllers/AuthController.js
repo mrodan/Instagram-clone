@@ -67,3 +67,8 @@ export const logout = (req, res) => {
     res.json({ user: { username: "", privilege: "" }, success: true }); // MAYBE ADD EMAIL AND PHONE? ***
     console.log("Succesfully logged out");
 }
+
+export const authenticated = (req, res) => {
+    const { _id, username, privilege } = req.user;
+    res.status(200).json({ isAuthenticated: true, user: { _id, username, privilege } });
+}

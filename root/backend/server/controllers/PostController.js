@@ -20,9 +20,18 @@ export const createPost = (req, res) => {
     else if (!post.image) {
         return res.status(422).json({ message: { messageBody: "Add photo", messageError: true } });
     }
-    req.user.password = undefined; // OR after next line
-    post.postedBy = req.user;
-    //console.log(post);
+
+    const tempUser = req.user;
+    tempUser.password = undefined;
+    /*
+    tempUser.posts = undefined;
+    tempUser.email = undefined;
+    tempUser.mobile = undefined;
+    tempUser.privilege = undefined;
+    tempUser.createdAt = undefined;
+    tempUser.updatedAt = undefined;
+    */
+    post.postedBy = tempUser;
 
     post.save()
         .then(post => {

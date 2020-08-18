@@ -74,7 +74,7 @@ const UploadTest = () => {
                 {previewSource && (
                     <img src={previewSource}
                         alt="chosen"
-                        style={{ height: '300px' }} />
+                        style={{ height: '293px', width: '293px' }} />
                 )}
             </div>
 
@@ -85,7 +85,8 @@ const UploadTest = () => {
                         <Image 
                                cloudName="rodanm"
                                publicId={imageId}
-                               width="300"
+                               width="293"
+                               height="293"
                                crop="scale" />
                     ))}
                 </div>

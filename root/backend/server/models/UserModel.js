@@ -8,10 +8,8 @@ const UserSchema = new mongoose.Schema({
     email: { type: String, default: 'abc', lowercase: true },
     mobile: { type: String, default: '123', trim: true },
     dob: { type: Date },
-    privilege: { type: String, enum: ['user', 'admin' ], default: "user"}
-
-
-    //post: [{type: mongoose.Schema.Types.ObjectId, ref: 'Post'}]
+    privilege: { type: String, enum: ['user', 'admin' ], default: "user"},
+    posts: [{type: mongoose.Schema.Types.ObjectId, ref: 'Post'}]
 }, { timestamps: true });
 
 // Runs before save (do not use arrow func to access 'this')

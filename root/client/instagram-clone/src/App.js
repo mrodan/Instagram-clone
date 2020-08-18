@@ -6,6 +6,7 @@ import PublicRoute from './hocs/PublicRoute';
 import Register from './components/register/Register';
 import Login from './components/login/Login';
 import Home from './components/home-view/HomeView';
+import Explore from './components/explore-view/ExploreView';
 import UploadTest from './components/Tests/UploadTest';
 
 
@@ -19,15 +20,15 @@ const App = () => {
 
   //Route takes in a path, based on path is going to render different components
   return (
-    <div>
       <Router>
         <Route exact path="/" component={Home} />
+        <Route exact path="/explore" component={Explore} />
         <PublicRoute path="/auth/register" component={Register} />
         <PublicRoute path="/auth/login" component={Login} />
+        
 
-        <Route exact path="/uploadtest" component={UploadTest} />
+        <Route exact path="/cloudinarytest" component={UploadTest} />
       </Router>
-    </div>
   );
 }
 

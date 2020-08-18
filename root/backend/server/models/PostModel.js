@@ -7,11 +7,10 @@ const PostSchema = new mongoose.Schema({
     image: { type: String, default: "no image" },
     //filter: { type: String },
     caption: { type: String, default: "" },
-    description: { type: String, required: true },
     likedBy: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
     like_count: { type: Number, default: 0 },
-    comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }],
-    hashtag: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Hashtag' }]
-}, { timestamps: true }); // createdAt, updatedAt
+    comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }]
+    //hashtags: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Hashtag' }]
+}, { timestamps: true });
 
 export default mongoose.model('Post', PostSchema);

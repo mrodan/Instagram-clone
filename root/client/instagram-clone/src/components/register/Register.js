@@ -66,28 +66,28 @@ const Register = (props) => {
                                 name="email"
                                 value={user.email}
                                 onChange={onChangeHandler}
-                                placeHolder="Email" />
+                                placeholder="Email" />
 
                             <label htmlFor="fullName" />
                             <input type="text"
                                 name="fullName"
                                 value={user.fullName}
                                 onChange={onChangeHandler}
-                                placeHolder="Full Name" />
+                                placeholder="Full Name" />
 
                             <label htmlFor="username" />
                             <input type="text"
                                 name="username"
                                 value={user.username}
                                 onChange={onChangeHandler}
-                                placeHolder="Username" />
+                                placeholder="Username" />
 
                             <label htmlFor="password" />
                             <input type="password"
                                 name="password"
                                 value={user.password}
                                 onChange={onChangeHandler}
-                                placeHolder="Password" />
+                                placeholder="Password" />
 
                             <button className="form-btn-signup" type="submit">Sign up</button>
 
@@ -101,8 +101,8 @@ const Register = (props) => {
                         <div className="get-the-app">
                             <span>Get the app.</span>
                             <div className="badges">
-                                <img src="https://www.instagram.com/static/images/appstore-install-badges/badge_ios_english-en.png/180ae7a0bcf7.png" />
-                                <img src="https://www.instagram.com/static/images/appstore-install-badges/badge_android_english-en.png/e9cd846dc748.png" />
+                                <img src="https://www.instagram.com/static/images/appstore-install-badges/badge_ios_english-en.png/180ae7a0bcf7.png" alt="" />
+                                <img src="https://www.instagram.com/static/images/appstore-install-badges/badge_android_english-en.png/e9cd846dc748.png" alt="" />
                             </div>
                         </div>
 
