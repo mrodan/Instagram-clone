@@ -1,5 +1,6 @@
 import express from 'express';
 import passport from 'passport';
+import cloudinary from '../utils/cloudinary.js';
 import User from '../models/UserModel.js';
 import Post from '../models/PostModel.js';
 
@@ -11,6 +12,45 @@ import Post from '../models/PostModel.js';
     caption: { type: String, default: "" },
     hashtag: [{ type: Schema.ObjectId, ref: 'Hashtag' }]
 }, { timestamps: true }); // createdAt, updatedAt */
+
+export const uploadImage = async (req, res) => {
+    try {
+        if (!req.body.caption) {
+            res.status(422).json({ message: { messageBody: "Add caption", messageError: true } });
+        }
+        else if (!req.body.imageData) {
+            return res.status(422).json({ message: { messageBody: "Add photo", messageError: true } });
+        }
+
+        const fileStr = req.body.imageData;
+        const uploadedResponse = await cloudinary.v2.uploader.upload(fileStr, {
+            folder: 'insta_clone'
+        })
+        //console.log(uploadedResponse);
+        const post = new Post({
+            caption: req.body.caption,
+            image_PublicId: uploadedResponse.public_id
+        });
+        const tempUser = req.user;
+        tempUser.password = undefined;
+        // tempUser.posts = undefined; tempUser.email = undefined; tempUser.mobile = undefined; tempUser.privilege = undefined; tempUser.createdAt = undefined; tempUser.updatedAt = undefined;
+        post.postedBy = tempUser;
+
+        try {
+            await post.save()
+            .then(post => {
+                res.status(200).json({ message: { messageBody: "Succesfully posted", messageError: false } });
+            })
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({ message: { messageBody: "Error saving post to DB", messageError: true } });
+        }
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: { messageBody: "Error uploading image", messageError: true } });
+    }
+}
 
 export const newPost = (req, res) => {
     const post = new Post(req.body);
@@ -35,7 +75,7 @@ export const newPost = (req, res) => {
 
     post.save()
         .then(post => {
-            res.status(200).json({post: post, message: { messageBody: "Succesfully posted", messageError: false } });
+            res.status(200).json({ post: post, message: { messageBody: "Succesfully posted", messageError: false } });
         })
         .catch(err => {
             res.status(500).json({ message: { messageBody: "Error saving post to DB", messageError: true } });

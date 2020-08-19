@@ -118,12 +118,11 @@ input[type="file"] {
     position: absolute;
     margin-left: -113px;
     margin-top: 3px;
-    
+    cursor: pointer;
 }
 
 .location {
     margin-right: 8px;
-
 }
 
 
@@ -132,4 +131,5 @@ input[type="file"] {
     position: absolute;
     margin-top: 3.5px;
     margin-left: -116px;
+    cursor: pointer;
 }

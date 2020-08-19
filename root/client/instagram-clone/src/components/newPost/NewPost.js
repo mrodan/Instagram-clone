@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
+import axios from 'axios';
+import { AuthContext } from '../../Context/AuthContext'
 import { Link } from 'react-router-dom'     // LINK for not to refresh website (Link to= <=> a)
 import { Image, Transformation } from 'cloudinary-react';
 import './NewPostStyle.css'
@@ -8,8 +10,8 @@ import LocalOfferIcon from '@material-ui/icons/LocalOffer';
 import { Form, TextArea } from 'semantic-ui-react'
 
 const NewPost = () => {
+    const { username, _id, isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
     const [newPost, setNewPost] = useState({
-        image_PublicId: "",
         caption: ""
         //usersTagged: [""],
         //location: "",
@@ -18,11 +20,10 @@ const NewPost = () => {
     const [previewSource, setPreviewSource] = useState()
 
     const previewFile = (file) => {
-        const reader = new FileReader(); // Built-in js API
+        const reader = new FileReader(); // Built-in js API to read files
         reader.readAsDataURL(file); // Convert img into url string
         reader.onloadend = () => {
-            // We set the onloanded property to be this func to display preview img
-            setPreviewSource(reader.result);
+            setPreviewSource(reader.result); // We set the onloanded property to be this func to display preview img
         }
     }
 
@@ -33,26 +34,38 @@ const NewPost = () => {
 
     const onChangePostData = (e) => {
         setNewPost({ ...newPost, [e.target.name]: e.target.value });
+        //console.log(newPost);
     }
 
-    const onSubmitFile = () => {
-
+    // Submit img to server
+    const uploadImage = async (base64EncodedImage) => {
+        //console.log(base64EncodedImage);
+        // axios.post(reqUrl, data, headers) .then .catch
+        await axios.post("/post/upload",
+            { imageData: base64EncodedImage, caption: newPost.caption },
+            { headers: { 'Content-Type': "Application/json" } })
+            .then((res) => {
+                //console.log(res)
+            })
+            .catch((error) => {
+                console.log(error);
+            })
     }
 
-    const onSubmitNewPost = () => {
-
+    const onSubmitNewPost = (e) => {
+        e.preventDefault();
+        if (!previewSource) return;
+        uploadImage(previewSource);
     }
 
 
     return (
-
-
         <div className="newpost-container">
             <Form onSubmit={onSubmitNewPost} action="">
 
                 <div className="nav-newpost">
                     <h4 className="newpost-title">New Post</h4>
-                    <button className="share">Share</button>
+                    <button className="share" type="submit" >Share</button>
 
                 </div>
 
@@ -62,7 +75,7 @@ const NewPost = () => {
                             <Transformation width="32" crop="scale" />
                         </Image>
                         <Link to="/#" className="link-profile">
-                            chinoRodan
+                            {username}
                         </Link>
                     </div>
 
@@ -82,9 +95,9 @@ const NewPost = () => {
                 <div>
                     {previewSource && (
                         <img src={previewSource}
-                            alt="chosen"
-                            style={{ height: '488px', width: '488px' }} 
-                            className="preview-image"/>
+                            alt="Preview Image"
+                            style={{ height: '488px', width: '488px' }}
+                            className="preview-image" />
                     )}
                 </div>
 
@@ -95,7 +108,7 @@ const NewPost = () => {
                         value={newPost.caption}
                         onChange={onChangePostData}
                         placeholder="Write a caption..."
-                        className="caption"/>
+                        className="caption" />
                 </div>
 
                 <div className="tag-location">

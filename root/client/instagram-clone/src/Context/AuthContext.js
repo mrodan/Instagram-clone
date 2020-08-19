@@ -8,13 +8,24 @@ export const AuthContext = createContext();
 
 // Children are the components that the provider will wrap around
 export default ({ children }) => {
-    const [user, setUser] = useState(null);
+    /*const [username, setUsername] = useState({
+        username: '',
+        _id: ''
+    });*/
+    const [username, setUsername] = useState("");
+    const [_id, set_id] = useState("");
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
         AuthService.isAuthenticated().then(data => {
-            setUser(data.user);
+            //console.log(data)
+            /*setUser({
+                username: data.user.username,
+                _id: data.user._id
+            });*/
+            setUsername(data.user.username);
+            set_id(data.user._id)
             setIsAuthenticated(data.isAuthenticated);
             setIsLoaded(true);
         });
@@ -25,7 +36,7 @@ export default ({ children }) => {
     return (
         <div>
             {!isLoaded ? <h1>Loading..</h1> : 
-                <AuthContext.Provider value={{ user, setUser, isAuthenticated, setIsAuthenticated }}>
+                <AuthContext.Provider value={{ username, _id, isAuthenticated, setIsAuthenticated }}>
                     { children }    
                 </AuthContext.Provider>}
         </div>

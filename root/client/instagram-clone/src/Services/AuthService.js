@@ -44,7 +44,7 @@ export default {
                 if (res.status !== 401) // Passport responds 401 status if not authenticated
                     return res.json().then(data => data); // Authenticated
                 else
-                    return { isAuthenticated: false, user: { username: "", privilege: "" } };
+                    return { isAuthenticated: false, user: { username: "" } };
             });
     }
 

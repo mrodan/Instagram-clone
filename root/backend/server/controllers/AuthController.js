@@ -52,23 +52,23 @@ const signToken = userID => {
 export const login = (req, res) => {
     if (req.isAuthenticated()) {
         // req.username comes from passport that is ataching the user object to the req obj
-        const { _id, username, privilege } = req.user;
+        const { _id, username } = req.user;
         const token = signToken(_id); // Create jwt token since we signed in
         res.cookie('access_token', token, { httpOnly: true, sameSite: true });
         // httpOnly: Set that the client side cannot change this cookie.. prevent cross-site scripting attack
         // sameSite: prevent agains croos-site request forgery attacks (protect token not to be stolen?)
-        res.status(200).json({ isAuthenticated: true, user: { username, privilege } }); // ADD token **
+        res.status(200).json({ isAuthenticated: true, user: { username, _id } }); // ADD token **
     }
 }
 
 
 export const logout = (req, res) => {
     res.clearCookie('access_token'); //remove jwt access_token
-    res.json({ user: { username: "", privilege: "" }, success: true }); // MAYBE ADD EMAIL AND PHONE? ***
+    res.json({ user: { username: ""}, success: true }); // MAYBE ADD EMAIL AND PHONE? ***
     console.log("Succesfully logged out");
 }
 
 export const authenticated = (req, res) => {
     const { _id, username, privilege } = req.user;
-    res.status(200).json({ isAuthenticated: true, user: { _id, username, privilege } });
+    res.status(200).json({ isAuthenticated: true, user: { _id, username } });
 }
