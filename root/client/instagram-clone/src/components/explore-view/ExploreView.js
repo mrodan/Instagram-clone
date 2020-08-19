@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom'     // LINK for not to refresh website (Link to= <=> a)
 import './ExploreViewViewStyle.css'
 import Navbar from '../navbar/Navbar'
 import { Image } from 'cloudinary-react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import Favorite from '@material-ui/icons/Favorite'
+import ModeComment from '@material-ui/icons/ModeComment'
 
 const Explore = (props) => {
     // DISPLAY
@@ -32,13 +34,25 @@ const Explore = (props) => {
             <div className="content-container">
                 <div className="test">
                     {imageIDs && imageIDs.map((imageId, index) => (
-                        <Image
-                            className="image"
-                            cloudName="rodanm"
-                            publicId={imageId}
-                            width="293"
-                            height="293"
-                            crop="scale" />
+                        <div className="image-container">
+                            <Link className="" to="/#">
+                                <Image
+                                    className="image"
+                                    cloudName="rodanm"
+                                    publicId={imageId}
+                                    width="293"
+                                    height="293"
+                                    crop="scale" />
+                            </Link>
+                            <div className="image-overlay">
+                                <span>
+                                    <Favorite /> Likes
+                                </span>
+                                <span>
+                                    <ModeComment /> Comments {/*post.comments.length*/}
+                                </span>
+                            </div>
+                        </div>
                     ))}
                 </div>
             </div>

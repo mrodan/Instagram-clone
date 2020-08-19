@@ -1,12 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom'; // ADD ROUTE FOR HOME PATH
 import './App.css';
-//import PrivateRoute from "./hocs/PrivateRoute";
+import PrivateRoute from "./hocs/PrivateRoute";
 import PublicRoute from './hocs/PublicRoute';
 import Register from './components/register/Register';
 import Login from './components/login/Login';
 import Home from './components/home-view/HomeView';
 import Explore from './components/explore-view/ExploreView';
+import NewPost from './components/newPost/NewPost'
 import UploadTest from './components/Tests/UploadTest';
 
 
@@ -25,6 +26,7 @@ const App = () => {
         <Route exact path="/explore" component={Explore} />
         <PublicRoute path="/auth/register" component={Register} />
         <PublicRoute path="/auth/login" component={Login} />
+        <PrivateRoute path="/newpost" component={NewPost}/>
         
 
         <Route exact path="/cloudinarytest" component={UploadTest} />

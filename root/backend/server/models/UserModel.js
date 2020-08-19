@@ -8,7 +8,7 @@ const UserSchema = new mongoose.Schema({
     email: { type: String, default: 'abc', lowercase: true },
     mobile: { type: String, default: '123', trim: true },
     dob: { type: Date },
-    privilege: { type: String, enum: ['user', 'admin' ], default: "user"},
+    profileImage_PublicId: { type: String, default: "insta_clone/defaultUserImg_riym54.jpg" },
     posts: [{type: mongoose.Schema.Types.ObjectId, ref: 'Post'}]
 }, { timestamps: true });
 

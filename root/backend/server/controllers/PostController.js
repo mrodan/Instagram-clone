@@ -12,12 +12,12 @@ import Post from '../models/PostModel.js';
     hashtag: [{ type: Schema.ObjectId, ref: 'Hashtag' }]
 }, { timestamps: true }); // createdAt, updatedAt */
 
-export const createPost = (req, res) => {
+export const newPost = (req, res) => {
     const post = new Post(req.body);
     if (!post.caption) {
         res.status(422).json({ message: { messageBody: "Add caption", messageError: true } });
     }
-    else if (!post.image) {
+    else if (!post.image_PublicId) {
         return res.status(422).json({ message: { messageBody: "Add photo", messageError: true } });
     }
 

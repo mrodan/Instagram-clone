@@ -11,13 +11,8 @@ const PrivateRoute = ({component : Component, privileges, ...rest})=>{
         // Pass props to route. (spread operator) Use Route component to pass the props (within ...rest variable)
         <Route {...rest} render={props =>{
             if(!isAuthenticated)
-                return <Redirect to={{ pathname: '/login', 
+                return <Redirect to={{ pathname: '/auth/login', 
                                        state : {from : props.location}}}/>
-            
-            // If false, user does not have correct privilege
-            if(!privileges.includes(user.privilege))
-                return <Redirect to={{ pathname: '/', 
-                                 state : {from : props.location}}}/>
 
             // Here the user is authenticated and has correct privileges 
             return <Component {...props}/> // Spread operator to copy over the props into the component we want to render

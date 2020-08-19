@@ -65,10 +65,10 @@ const UploadTest = () => {
                 <h1>UploadTest</h1>
                 <form onSubmit={submitFileHandler} className="form">
                     <input type='file'
-                        name='image'
-                        onChange={onChangeFileInputHandler}
-                        value={fileInput}
-                        className='form-input' />
+                           name='image'
+                           onChange={onChangeFileInputHandler}
+                           value={fileInput}
+                           className='form-input' />
                     <button className='btn' type='submit'>Submit</button>
                 </form>
                 {previewSource && (

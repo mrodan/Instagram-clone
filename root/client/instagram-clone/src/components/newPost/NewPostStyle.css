@@ -1,0 +1,135 @@
+.newpost-container {
+    width: 500px;
+    font-size:1.4rem;
+    border: 1px solid rgb(212, 212, 212);
+    border-radius: 0.3rem;
+
+    margin: auto;
+    margin-top: 80px;
+}
+
+.nav-newpost {
+    width: 100%;
+    border-bottom: 1px solid rgb(212, 212, 212);
+    display: inline-flex;
+    padding: 5px;
+    background-color: #FAFAFA;
+}
+
+.newpost-title {
+    margin: auto;
+}
+
+.share {
+    height: 3rem;
+    width: 6.2rem;
+    background-color: #3897F0;
+    color: white;
+    font-size: 1.8rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 0.4rem;
+    cursor: pointer;
+}
+
+.profile-info {
+    margin: 8px 8px;
+}
+
+.link-profile {
+    color: #262626;
+    font-size:1.3rem;
+    font-weight: 600;    
+}
+
+.user-info-upload {
+    display: flex;
+}
+
+.select-file{
+    margin-left: 383px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    color: rgb(165, 167 ,170);
+    position: absolute;
+    cursor: pointer;
+}
+
+.preview-image {
+    margin-left: 5px;
+    margin-bottom: 8px;
+}
+
+input[type="file"] {
+    display: none;
+}
+.add-photo-icon{
+    position: absolute;
+    margin-left: 7px;
+    margin-bottom: 5px;
+}
+
+.file-upload {
+    padding: 4px 0px 0px 35px;
+    height: 2.8rem;
+    width: 11rem;
+    background-color: rgb(212, 212, 212); /*#58a8f3*/
+    color: black;
+    font-size: 1.3rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 0.4rem;
+    cursor: pointer;
+}
+
+.caption {
+    width: 488px;
+    align-items: center;
+    margin-left: 5px;
+    border: 0px solid rgb(212, 212, 212);
+    border-radius: 0.4rem;
+}
+
+.tag-location {
+    display: flex;
+    margin: 3px 0px 5px 5px ;
+    
+}
+
+.tag {
+ margin-right: 8px;
+}
+
+.tag-location-btn {
+    padding: 0px 0px 0px 22px;
+    height: 2.8rem;
+    width: 12rem;
+    background-color: rgb(212, 212, 212); /*#58a8f3*/
+    color: black;
+    font-size: 1.3rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 0.4rem;
+    cursor: pointer;
+}
+
+.tag-icon {
+    position: absolute;
+    margin-left: -113px;
+    margin-top: 3px;
+    
+}
+
+.location {
+    margin-right: 8px;
+
+}
+
+
+
+.location-icon {
+    position: absolute;
+    margin-top: 3.5px;
+    margin-left: -116px;
+}
