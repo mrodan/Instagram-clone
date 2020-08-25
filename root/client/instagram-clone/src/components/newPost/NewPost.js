@@ -10,7 +10,7 @@ import LocalOfferIcon from '@material-ui/icons/LocalOffer';
 import { Form, TextArea } from 'semantic-ui-react'
 
 const NewPost = () => {
-    const { username, _id, isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
+    const { clientUsername, client_id, isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
     const [newPost, setNewPost] = useState({
         caption: ""
         //usersTagged: [""],
@@ -70,12 +70,12 @@ const NewPost = () => {
                 </div>
 
                 <div className="user-info-upload">
-                    <div>
-                        <Image className="profile-info" cloudName="rodanm" publicId="insta_clone/defaultUserImg_riym54.jpg" >
-                            <Transformation width="32" crop="scale" />
+                    <div className="profile-info">
+                        <Image className="profile-img-circle" cloudName="rodanm" publicId="insta_clone/defaultUserImg_riym54.jpg" >
+                            <Transformation width="32" height="32" crop="scale" />
                         </Image>
                         <Link to="/#" className="link-profile">
-                            {username}
+                            {clientUsername}
                         </Link>
                     </div>
 

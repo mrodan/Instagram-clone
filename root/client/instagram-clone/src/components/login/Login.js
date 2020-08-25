@@ -19,7 +19,7 @@ const Login = (props) => {
             const { isAuthenticated, user, message } = data;
             //console.log(data);
             if (isAuthenticated) {
-                authContext.setUser(user);
+                authContext.setClientUsername(user);
                 authContext.setIsAuthenticated(isAuthenticated);
                 props.history.push('/');
             }

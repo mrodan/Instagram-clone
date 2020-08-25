@@ -7,7 +7,7 @@ import NavbarLogin from './LoginRegister/NavbarLogin'
 import NavbarRegister from './LoginRegister/NavbarRegister'
 
 const Navbar = (props) => {
-    const { isAuthenticated, setIsAuthenticated, user, setUser } = useContext(AuthContext);
+    const { clientUsername, client_id, isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
 
     const authenticatedActions = () => {
         return (
@@ -31,7 +31,7 @@ const Navbar = (props) => {
                         <img className="action-icon" src="https://i.ibb.co/rv2c7SD/Heart-White-V2.png" alt="" />
                     </Link>
 
-                    <Link className="" to="/">
+                    <Link className="" to={`/profile/${clientUsername}`}>
                         <img className="action-icon" src="https://i.ibb.co/FKvjjPq/Temp-Pic-Icon.png" alt="" />
                     </Link>
                 </div>

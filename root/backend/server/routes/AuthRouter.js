@@ -1,7 +1,6 @@
 import express from 'express';
 import passport from 'passport';
 import * as authController from '../controllers/AuthController.js';
-//import * as todoController from '../Controllers/TodoController.js';
 
 const authRouter = express.Router();
 

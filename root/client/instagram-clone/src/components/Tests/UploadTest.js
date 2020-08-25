@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Image } from 'cloudinary-react';
+import UserSearch from '../navbar/Searchbar/UserSearch'
 
 const UploadTest = () => {
     // UPLOAD AND REQUEST
@@ -60,15 +61,29 @@ const UploadTest = () => {
 
 
     return (
+        <>
+            <UserSearch username="aug13" fullName="Agosto Langosta" imgId="insta_clone/zium2cugs61p27oq5zzs.jpg" />
+            <UserSearch username="aug13" fullName="Agosto Langosta" imgId="insta_clone/zium2cugs61p27oq5zzs.jpg" />
+            <UserSearch username="aug13" fullName="Agosto Langosta" imgId="insta_clone/zium2cugs61p27oq5zzs.jpg" />
+
+        </>
+    )
+}
+
+/*
+return (
         <div>
             <div>
                 <h1>UploadTest</h1>
+                <div>
+                    <UserSearch username="aug13" fullName="Agosto Langosta" imgId="insta_clone/zium2cugs61p27oq5zzs.jpg" />
+                </div>
                 <form onSubmit={submitFileHandler} className="form">
                     <input type='file'
-                           name='image'
-                           onChange={onChangeFileInputHandler}
-                           value={fileInput}
-                           className='form-input' />
+                        name='image'
+                        onChange={onChangeFileInputHandler}
+                        value={fileInput}
+                        className='form-input' />
                     <button className='btn' type='submit'>Submit</button>
                 </form>
                 {previewSource && (
@@ -82,12 +97,12 @@ const UploadTest = () => {
                 <h1>Display</h1>
                 <div>
                     {imageIDs && imageIDs.map((imageId, index) => (
-                        <Image 
-                               cloudName="rodanm"
-                               publicId={imageId}
-                               width="293"
-                               height="293"
-                               crop="scale" />
+                        <Image
+                            cloudName="rodanm"
+                            publicId={imageId}
+                            width="293"
+                            height="293"
+                            crop="scale" />
                     ))}
                 </div>
 
@@ -99,6 +114,7 @@ const UploadTest = () => {
         </div >
 
     )
-}
 
+
+*/
 export default UploadTest;

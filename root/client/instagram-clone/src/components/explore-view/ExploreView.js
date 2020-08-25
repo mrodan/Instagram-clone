@@ -32,7 +32,7 @@ const Explore = (props) => {
             </div>
 
             <div className="content-container">
-                <div className="test">
+                <div className="images-size">
                     {imageIDs && imageIDs.map((imageId, index) => (
                         <div className="image-container">
                             <Link className="" to="/#">

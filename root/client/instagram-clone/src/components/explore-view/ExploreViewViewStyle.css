@@ -19,6 +19,11 @@ display: block;
 
 }
 
+.images-size{
+    width: 963px;
+    display: inline-block;
+}
+
 .image-container {
     display: inline-block;
     position: relative;

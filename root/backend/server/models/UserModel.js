@@ -9,7 +9,10 @@ const UserSchema = new mongoose.Schema({
     mobile: { type: String, default: '123', trim: true },
     dob: { type: Date },
     profileImage_PublicId: { type: String, default: "insta_clone/defaultUserImg_riym54.jpg" },
-    posts: [{type: mongoose.Schema.Types.ObjectId, ref: 'Post'}]
+    posts: [{type: mongoose.Schema.Types.ObjectId, ref: 'Post'}],
+    followersCount: { type: Number, default: 0 },
+    followingCount: { type: Number, default: 0 },
+    bio: { type: String, max: 150 }
 }, { timestamps: true });
 
 // Runs before save (do not use arrow func to access 'this')
