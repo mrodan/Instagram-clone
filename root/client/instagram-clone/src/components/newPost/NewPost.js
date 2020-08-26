@@ -41,7 +41,7 @@ const NewPost = () => {
     const uploadImage = async (base64EncodedImage) => {
         //console.log(base64EncodedImage);
         // axios.post(reqUrl, data, headers) .then .catch
-        await axios.post("/post/upload",
+        await axios.post("/post/newpost",
             { imageData: base64EncodedImage, caption: newPost.caption },
             { headers: { 'Content-Type': "Application/json" } })
             .then((res) => {

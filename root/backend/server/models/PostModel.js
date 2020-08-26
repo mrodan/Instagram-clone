@@ -7,7 +7,6 @@ const PostSchema = new mongoose.Schema({
     image_PublicId: { type: String },
     //filter: { type: String },
     caption: { type: String, default: "" },
-    likedBy: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
     likeCount: { type: Number, default: 0 },
     usersTagged: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
     location: { type: String },

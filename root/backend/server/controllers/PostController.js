@@ -13,7 +13,7 @@ import Post from '../models/PostModel.js';
     hashtag: [{ type: Schema.ObjectId, ref: 'Hashtag' }]
 }, { timestamps: true }); // createdAt, updatedAt */
 
-export const uploadImage = async (req, res) => {
+export const newPost = async (req, res) => {
     try {
         if (!req.body.caption) {
             res.status(422).json({ message: { messageBody: "Add caption", messageError: true } });
@@ -50,36 +50,6 @@ export const uploadImage = async (req, res) => {
         console.log(error);
         res.status(500).json({ message: { messageBody: "Error uploading image", messageError: true } });
     }
-}
-
-export const newPost = (req, res) => {
-    const post = new Post(req.body);
-    if (!post.caption) {
-        res.status(422).json({ message: { messageBody: "Add caption", messageError: true } });
-    }
-    else if (!post.image_PublicId) {
-        return res.status(422).json({ message: { messageBody: "Add photo", messageError: true } });
-    }
-
-    const tempUser = req.user;
-    tempUser.password = undefined;
-    /*
-    tempUser.posts = undefined;
-    tempUser.email = undefined;
-    tempUser.mobile = undefined;
-    tempUser.privilege = undefined;
-    tempUser.createdAt = undefined;
-    tempUser.updatedAt = undefined;
-    */
-    post.postedBy = tempUser;
-
-    post.save()
-        .then(post => {
-            res.status(200).json({ post: post, message: { messageBody: "Succesfully posted", messageError: false } });
-        })
-        .catch(err => {
-            res.status(500).json({ message: { messageBody: "Error saving post to DB", messageError: true } });
-        })
 }
 
 export const allPosts = (req, res) => {
