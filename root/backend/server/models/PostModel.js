@@ -1,6 +1,4 @@
 import mongoose from 'mongoose';
-//import User from '../models/UserModel.js';
-//import Hashtag from '../models/HashtagModel';
 
 const PostSchema = new mongoose.Schema({
     postedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },

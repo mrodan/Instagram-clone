@@ -1,8 +1,9 @@
-import express from 'express';
-import passport from 'passport';
+import mongoose from 'mongoose';
 import cloudinary from '../utils/cloudinary.js';
 import User from '../models/UserModel.js';
 import Post from '../models/PostModel.js';
+import LikeModel from '../models/LikeModel.js';
+import PostModel from '../models/PostModel.js';
 
 /* const PostSchema = new mongoose.Schema({
     postedBy: { type: Schema.Types.ObjectId, ref: 'User' },
@@ -38,9 +39,9 @@ export const newPost = async (req, res) => {
 
         try {
             await post.save()
-            .then(post => {
-                res.status(200).json({ message: { messageBody: "Succesfully posted", messageError: false } });
-            })
+                .then(post => {
+                    res.status(200).json({ message: { messageBody: "Succesfully posted", messageError: false } });
+                })
         } catch (error) {
             console.log(error);
             res.status(500).json({ message: { messageBody: "Error saving post to DB", messageError: true } });
@@ -72,5 +73,72 @@ export const userPosts = (req, res) => {
         .catch(err => {
             res.status(500).json({ message: { messageBody: "Error getting user posts", messageError: true } });
 
+        })
+}
+
+export const likePost = async (req, res) => {
+    const session = await mongoose.connection.startSession();
+    session.startTransaction();
+
+    const like = await LikeModel.findOne({ $and: [{ likedBy: req.user._id }, { post: req.body._id }] }).session(session);
+    if (!like) {
+        const like = new LikeModel({
+            likedBy: req.user._id,
+            post: req.body._id
+        });
+        like.save();
+    }
+    else {
+        await session.abortTransaction();
+        session.endSession();
+        res.status(403).json({ message: { messageBody: "Already liked", messageError: true } });
+    }
+
+    const postLiked = await PostModel.findByIdAndUpdate(req.body._id, { $inc: { likeCount: 1 } }, { new: true }).session(session);
+    if (!postLiked) {
+        await session.abortTransaction();
+        session.endSession();
+        res.status(403).json({ message: { messageBody: "Error, no post", messageError: true } });
+    }
+
+    await session.commitTransaction();
+    session.endSession();
+    res.status(200).json({ message: { messageBody: "Post liked succesfully", messageError: false } });
+}
+
+export const unlikePost = async (req, res) => {
+    const session = await mongoose.connection.startSession();
+    session.startTransaction();
+
+    const like = await LikeModel.findOneAndDelete({ $and: [{ likedBy: req.user._id }, { post: req.body._id }] }).session(session);
+    if (!like) {
+        await session.abortTransaction();
+        session.endSession();
+        res.status(403).json({ message: { messageBody: "Error, post is not liked", messageError: true } });
+    }
+
+    const postLiked = await PostModel.findByIdAndUpdate(req.body._id, { $inc: { likeCount: -1 } }, { new: true }).session(session);
+    if (!postLiked) {
+        await session.abortTransaction();
+        session.endSession();
+        res.status(403).json({ message: { messageBody: "Error, no post", messageError: true } });
+    }
+
+    await session.commitTransaction();
+    session.endSession();
+    res.status(200).json({ message: { messageBody: "Post unliked succesfully", messageError: false } });
+}
+
+export const checkLike = async (req, res) => {
+    LikeModel.findOne({ $and: [{ likedBy: req.user._id }, { post: req.params._id }] })
+        .then(like => {
+            if (!like)
+                return res.status(200).json({ isLiked: false });
+
+            return res.status(200).json({ isLiked: true });
+        })
+        .catch(err => {
+            console.log(err);
+            return res.status(403).json({ message: { messageBody: "Error checking like", messageError: true } });
         })
 }

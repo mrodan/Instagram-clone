@@ -1,5 +1,4 @@
 import mongoose from 'mongoose'
-import assert from 'assert';
 import User from '../models/UserModel.js';
 import FollowersModel from '../models/FollowersModel.js';
 
@@ -40,27 +39,35 @@ export const followUser = async (req, res) => {
     session.startTransaction();
 
     //Check if follow relation exists to save it
-    const relation = await FollowersModel.findOne({ $and: [{ follower: req.user._id }, { following: req.body._id }] }).session(session)
+    const relation = await FollowersModel.findOne({ $and: [{ follower: req.user._id }, { following: req.body._id }] }).session(session);
     if (!relation) {
         const followRelation = new FollowersModel({
             follower: req.user._id,
             following: req.body._id
-        })
+        });
         followRelation.save(); // .save uses associated session by default
     }
     else {
+        await session.abortTransaction();
+        session.endSession();
         res.status(403).json({ message: { messageBody: "Already follows", messageError: true } });
     }
 
     // Increment following count to client user (follower)
-    const follower = await User.findByIdAndUpdate(req.user._id, { $inc: { followingCount: 1 } }, { new: true }).session(session)
-    if (!follower)
+    const follower = await User.findByIdAndUpdate(req.user._id, { $inc: { followingCount: 1 } }, { new: true }).session(session);
+    if (!follower) {
+        await session.abortTransaction();
+        session.endSession();
         res.status(403).json({ message: { messageBody: "Error, no follower user", messageError: true } });
+    }
 
     // Increment follower count to followed user
-    const following = await User.findByIdAndUpdate(req.body._id, { $inc: { followersCount: 1 } }, { new: true }).session(session)
-    if (!following)
+    const following = await User.findByIdAndUpdate(req.body._id, { $inc: { followersCount: 1 } }, { new: true }).session(session);
+    if (!following) {
+        await session.abortTransaction();
+        session.endSession();
         res.status(403).json({ message: { messageBody: "Error, no following user", messageError: true } });
+    }
 
     await session.commitTransaction(); // Once the transaction is committed, the write operation becomes visible outside of transaction
     session.endSession();
@@ -101,21 +108,29 @@ export const unfollowUser = async (req, res) => {
     const session = await mongoose.connection.startSession();
     session.startTransaction();
 
-    const relation = await FollowersModel.findOneAndDelete({ $and: [{ follower: req.user._id }, { following: req.body._id }] }).session(session)
-    if (!relation)
+    const relation = await FollowersModel.findOneAndDelete({ $and: [{ follower: req.user._id }, { following: req.body._id }] }).session(session);
+    if (!relation) {
+        await session.abortTransaction();
+        session.endSession();
         res.status(403).json({ message: { messageBody: "Follow relation does not exists", messageError: true } });
+    }
 
-    const follower = await User.findByIdAndUpdate(req.user._id, { $inc: { followingCount: -1 } }, { new: true }).session(session)
-    if (!follower)
+    const follower = await User.findByIdAndUpdate(req.user._id, { $inc: { followingCount: -1 } }, { new: true }).session(session);
+    if (!follower) {
+        await session.abortTransaction();
+        session.endSession();
         res.status(403).json({ message: { messageBody: "Error, no follower user", messageError: true } });
+    }
 
-    const following = await User.findByIdAndUpdate(req.body._id, { $inc: { followersCount: -1 } }, { new: true }).session(session)
-    if (!following)
+    const following = await User.findByIdAndUpdate(req.body._id, { $inc: { followersCount: -1 } }, { new: true }).session(session);
+    if (!following) {
+        await session.abortTransaction();
+        session.endSession();
         res.status(403).json({ message: { messageBody: "Error, no following user", messageError: true } });
+    }
 
-    await session.commitTransaction(); // Once the transaction is committed, the write operation becomes visible outside of transaction
+    await session.commitTransaction();
     session.endSession();
-    
     res.status(200).json({ message: { messageBody: "Unfollow was succesfull", messageError: false } });
 
     /*
@@ -136,12 +151,13 @@ export const unfollowUser = async (req, res) => {
 export const checkFollowing = (req, res) => {
     FollowersModel.findOne({ $and: [{ follower: req.user._id }, { following: req.params._id }] })
         .then(relation => {
-            //asser.ok(check if true, If false, console.log this)
-            //assert.ok(relation, "isFollowing: false")
-
             if (!relation)
                 return res.status(200).json({ isFollowing: false });
 
             return res.status(200).json({ isFollowing: true });
+        })
+        .catch(err => {
+            console.log(err);
+            return res.status(403).json({ message: { messageBody: "Error checking follow relation", messageError: true } });
         })
 }

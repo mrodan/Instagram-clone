@@ -8,6 +8,10 @@ postRouter.post('/newpost', passport.authenticate('jwt', { session: false }), po
 postRouter.get('/allposts', passport.authenticate('jwt', { session: false }), postController.allPosts);
 postRouter.get('/userPosts', passport.authenticate('jwt', { session: false }), postController.userPosts);
 
+postRouter.post('/like', passport.authenticate('jwt', { session: false }), postController.likePost);
+postRouter.post('/unlike', passport.authenticate('jwt', { session: false }), postController.unlikePost);
+postRouter.get('/checklike/:_id', passport.authenticate('jwt', { session: false }), postController.checkLike);
+
 
 
 
