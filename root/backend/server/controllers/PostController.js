@@ -65,7 +65,8 @@ export const allPosts = (req, res) => {
 }
 
 export const userPosts = (req, res) => {
-    Post.find({ postedBy: req.user._id })
+    console.log(req.params._id)
+    Post.find({ postedBy: req.params._id })
         .populate("postedBy", "_id username")
         .then(userPost => {
             res.json({ userPost })

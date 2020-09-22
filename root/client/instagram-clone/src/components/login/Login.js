@@ -39,17 +39,17 @@ const Login = (props) => {
                             <img className="img-login" src="https://i.ibb.co/rtXKD8W/instagram-logo-468-E0-CC266-seeklogo-com.png" alt="" />
                         </div>
 
-                        <label htmlFor="username" classname="sr-only" />
+                        <label htmlFor="username" className="sr-only" />
                         <input type="text"
                             name="username"
                             onChange={onChangeHandler}
-                            placeHolder="Username" />
+                            placeholder="Username" />
 
-                        <label htmlFor="password" classname="sr-only" />
+                        <label htmlFor="password" className="sr-only" />
                         <input type="password"
                             name="password"
                             onChange={onChangeHandler}
-                            placeHolder="Password" />
+                            placeholder="Password" />
 
                         <button className="form-btn" type="submit">Log in</button>
 

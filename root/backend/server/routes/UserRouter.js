@@ -4,7 +4,8 @@ import * as userController from '../controllers/UserController.js';
 
 const userRouter = express.Router();
 
-userRouter.get('/get/:_id', passport.authenticate('jwt',{session : false}), userController.getUser);
+userRouter.get('/getbyid/:_id', passport.authenticate('jwt',{session : false}), userController.getUserBy_id);
+userRouter.get('/getbyusername/:username', passport.authenticate('jwt',{session : false}), userController.getUserByUsername);
 userRouter.post('/search-user', userController.searchUser);
 
 userRouter.post('/follow', passport.authenticate('jwt',{session : false}), userController.followUser);

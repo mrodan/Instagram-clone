@@ -28,7 +28,6 @@ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubun
     display: flex;
     color:#262626;
     padding-bottom: 44px;
-    border-bottom: 1px solid #DBDBDB
     
 }
 
@@ -195,4 +194,83 @@ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubun
 .bio {
     font-size: 1.6rem;
     line-height: 2.4rem;
+}
+
+/* ACTIONS */
+.middle-section{
+    width: 100%;
+    height: 53px;
+    display: flex;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: #262626;
+    border-top: 1px solid #DBDBDB;
+
+}
+
+.posts-btn {
+    margin-top: -1px;
+    margin-right: 61px;
+    height: 100%;
+    background-color: #FAFAFA;
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border: none;
+    border-top: 1px solid #DBDBDB;
+    justify-content: center;
+
+}
+
+.igtv-btn {
+    margin-top: -1px;
+    margin-right: 61px;
+    height: 100%;
+    background-color: #FAFAFA;
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border: none;
+    border-top: 1px solid #DBDBDB;
+
+}
+
+.saved-btn {
+    margin-top: -1px;
+    margin-right: 61px;
+    height: 100%;
+    background-color: #FAFAFA;
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border: none;
+    border-top: 1px solid #DBDBDB;
+}
+
+.try {
+    margin-left: 6px;
+}
+
+.tagged-btn {
+    margin-top: -1px;
+    height: 100%;
+    background-color: #FAFAFA;
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border: none;
+    border-top: 1px solid #DBDBDB;
+
+}
+
+.posts-btn:focus, .igtv-btn:focus, .saved-btn:focus, .tagged-btn:focus {
+    outline-style: none;
+}
+
+.pressed-btn {
+    border-top: 1px solid #262626;
 }

@@ -8,7 +8,7 @@ export const uploadImage = async (req, res) => {
             folder: 'insta_clone'
         })
 
-        console.log(uploadedResponse);
+        //console.log(uploadedResponse);
         res.status(200).json({ message: { messageBody: "Image succesfully uploaded", messageError: false } });
 
     } catch (error) {
@@ -28,6 +28,7 @@ export const requestImagesExplore = async (req, res) => {
         const publicIDs = resources.map(file => file.public_id); // Get array of all public IDs
         //console.log(publicIDs)
         res.send(publicIDs) // Send img IDs to display them
+
 
     } catch (error) {
         console.log(error);

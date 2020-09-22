@@ -3,8 +3,22 @@ import User from '../models/UserModel.js';
 import FollowersModel from '../models/FollowersModel.js';
 
 // req.params.paramName (url: /:paramName)
-export const getUser = (req, res) => {
+export const getUserBy_id = (req, res) => {
     User.findOne({ _id: req.params._id })
+        .then(selectedUser => {
+            if (!selectedUser)
+                return res.status(403).json({ message: { messageBody: "Error, no user", messageError: true } });
+
+            selectedUser.password = undefined;
+            return res.status(200).send(selectedUser);
+        })
+        .catch(err => {
+            return res.status(403).json({ message: { messageBody: "Error getting user from DB", messageError: true } });
+        })
+}
+
+export const getUserByUsername = (req, res) => {
+    User.findOne({ username: req.params.username })
         .then(selectedUser => {
             if (!selectedUser)
                 return res.status(403).json({ message: { messageBody: "Error, no user", messageError: true } });
@@ -161,3 +175,4 @@ export const checkFollowing = (req, res) => {
             return res.status(403).json({ message: { messageBody: "Error checking follow relation", messageError: true } });
         })
 }
+
